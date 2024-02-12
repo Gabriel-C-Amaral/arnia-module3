@@ -1,7 +1,8 @@
 // import  productService  from '../services/productService'
-const productService = require('../services/productService')
+// const productService = require('../services/productService')
 import { Request, Response } from "express";
 import { CreateProductDTO } from "../dtos/createProductDTO";
+import { createProductService, getAllProductsService} from "../services/productService"
 
 
 const newProduct = async (req: Request, res: Response) => {
@@ -21,7 +22,7 @@ const newProduct = async (req: Request, res: Response) => {
        });
 
        // Use the DTO to create a new product via the productService
-       const product = await productService.createProduct(createProductDto);
+       const product = await createProductService(createProductDto);
 
        // Respond with the created product
        res.status(201).json(product);
@@ -32,7 +33,7 @@ const newProduct = async (req: Request, res: Response) => {
 
 const getAllProducts = async (req: Request, res: Response) => {
     try {
-        const products = await productService.getAllProducts();
+        const products = await getAllProductsService();
         res.json(products);
     } catch (error: any) {
         res.status(500).json({ message: error.message });

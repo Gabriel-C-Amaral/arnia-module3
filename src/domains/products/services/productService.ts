@@ -4,7 +4,7 @@ import { CreateProductDTO } from "../dtos/createProductDTO"
 
 
 
- const createProduct = async (product: CreateProductDTO) => {
+export const createProductService = async (product: CreateProductDTO) => {
 
      const newProduct = await productRepository.createProduct(product)
      if (!newProduct) {
@@ -15,8 +15,8 @@ import { CreateProductDTO } from "../dtos/createProductDTO"
      return newProduct
 }
 
-const getAllProducts = async () => {
+export const getAllProductsService = async () => {
    return await productRepository.getAllProducts();
 }
 
-module.exports = {createProduct, getAllProducts}
+// module.exports = {createProduct, getAllProducts}
