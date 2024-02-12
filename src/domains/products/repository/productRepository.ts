@@ -8,3 +8,7 @@ export const createProduct = async (newProduct: CreateProductDTO) => {
     return product
     
 }
+
+export const getAllProducts = async () => {
+    return await ProductModel.find({});
+}

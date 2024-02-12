@@ -15,4 +15,8 @@ import { CreateProductDTO } from "../dtos/createProductDTO"
      return newProduct
 }
 
-module.exports = {createProduct}
+const getAllProducts = async () => {
+   return await productRepository.getAllProducts();
+}
+
+module.exports = {createProduct, getAllProducts}

@@ -9,6 +9,7 @@ import { Request, Response } from 'express'
 
 export const productRoutes = Router()
 
-// productRoutes.post('/newproduct', authenticateToken, isAdminMiddleware, storageMiddleware.single("image"), (req: Request, res: Response) => {productController.newProduct(req, res)})
-// productRoutes.post('/newproduct', authenticateToken, isAdminMiddleware, storageMiddleware.single("image"),  (req: Request, res: Response) => { console.log(req.file)})
+
 productRoutes.post('/newproduct', authenticateToken, isAdminMiddleware, storageMiddleware.single("image"),  productController.newProduct)
+productRoutes.get('/listproducts',authenticateToken, productController.getAllProducts)
+

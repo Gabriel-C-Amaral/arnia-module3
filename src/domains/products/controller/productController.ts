@@ -30,4 +30,13 @@ const newProduct = async (req: Request, res: Response) => {
    }
 };
 
-module.exports = { newProduct };
+const getAllProducts = async (req: Request, res: Response) => {
+    try {
+        const products = await productService.getAllProducts();
+        res.json(products);
+    } catch (error: any) {
+        res.status(500).json({ message: error.message });
+    }
+};
+
+module.exports = { newProduct, getAllProducts };
