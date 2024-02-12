@@ -11,3 +11,8 @@ export const createUser = async (newUser: CreateUserDTO) => {
     return User
     
 }
+
+export const findUserByEmail = async (email: string) => {
+    const user = await UserModel.findOne({ email });
+    return user;
+};

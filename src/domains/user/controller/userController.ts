@@ -1,9 +1,12 @@
 import { Request, Response } from "express";
 import { CreateUserDTO } from "../dtos/createUserDTO";
 import {createUserService} from "../services/userService"
+import { LoginUserDTO } from "../dtos/loginUserDTO";
+import { loginUser } from "../services/userService";
 
 
-const newUser = async (req: Request, res: Response) => {
+
+export const newUser = async (req: Request, res: Response) => {
     try {
         // Validate the presence of the uploaded file
         if (!req.file || !req.file.filename) {
@@ -30,5 +33,16 @@ const newUser = async (req: Request, res: Response) => {
  };
 
 
-
- module.exports = { newUser}
+ export const loginUserController = async (req: Request, res: Response) => {
+    try {
+        const userData: LoginUserDTO = new LoginUserDTO(req.body);
+        const result = await loginUser(userData);
+        res.status(200).json(result);
+    } catch (error: any) {
+        let statusCode = 500;
+        if (error.message === "User not found" || error.message === "Invalid credentials") {
+            statusCode = 400;
+        }
+        res.status(statusCode).json({ error: error.message });
+    }
+};
