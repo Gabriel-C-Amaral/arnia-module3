@@ -12,3 +12,7 @@ export const createProduct = async (newProduct: CreateProductDTO) => {
 export const getAllProducts = async () => {
     return await ProductModel.find({});
 }
+
+export const getProductById = async (id: string) => {
+    return await ProductModel.findById(id);
+};

@@ -2,7 +2,7 @@
 // const productService = require('../services/productService')
 import { Request, Response } from "express";
 import { CreateProductDTO } from "../dtos/createProductDTO";
-import { createProductService, getAllProductsService} from "../services/productService"
+import { createProductService, getAllProductsService, getProductByIdService} from "../services/productService"
 
 
 const newProduct = async (req: Request, res: Response) => {
@@ -40,4 +40,15 @@ const getAllProducts = async (req: Request, res: Response) => {
     }
 };
 
-module.exports = { newProduct, getAllProducts };
+
+const getProductById = async (req: Request, res: Response) => {
+    try {
+        const productId = req.params.id;
+        const product = await getProductByIdService(productId);
+        res.json(product);
+    } catch (error: any) {
+        res.status(500).json({ message: error.message });
+    }
+};
+
+module.exports = { newProduct, getAllProducts, getProductById };

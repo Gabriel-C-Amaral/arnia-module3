@@ -19,4 +19,9 @@ export const getAllProductsService = async () => {
    return await productRepository.getAllProducts();
 }
 
+export const getProductByIdService = async (id: string) => {
+   return await productRepository.getProductById(id);
+};
+
+
 // module.exports = {createProduct, getAllProducts}

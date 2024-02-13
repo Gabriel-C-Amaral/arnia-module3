@@ -1,8 +1,9 @@
 export class UpdateUserDTO {
     name?: string;
-  email?: number;
+  email?: string;
   image?: string;
   isAdministrator?: Boolean;
+  wallet?: number
 
 
   constructor(userData: UpdateUser) {
@@ -10,6 +11,7 @@ export class UpdateUserDTO {
     this.email = userData?.email;
     this.image = userData?.image;
     this.isAdministrator = userData?.isAdministrator;
+    this.wallet = userData.wallet;
   }
 }
 
@@ -17,7 +19,8 @@ export class UpdateUserDTO {
 
 type UpdateUser = {
     name?: string;
-    email?: number;
+    email?: string;
     image?: string;
     isAdministrator?: Boolean;
+    wallet?: number;
 }
