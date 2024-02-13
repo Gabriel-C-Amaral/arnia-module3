@@ -12,8 +12,8 @@ OBRIGATORIOS
  Buscar produtos por id (rota Privada) ---
  
  --negocio
- Enviar joia para usuário (rota Privada - Admin)
- Resgatar produto (rota Privada)
+ Enviar joia para usuário (rota Privada - Admin) ---
+ Resgatar produto (rota Privada) 
 
 
 

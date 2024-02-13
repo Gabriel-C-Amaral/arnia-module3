@@ -16,3 +16,7 @@ export const findUserByEmail = async (email: string) => {
     const user = await UserModel.findOne({ email });
     return user;
 };
+
+export const addToWalletRepository = async (userId: string, amount: number) => {
+    return await UserModel.findByIdAndUpdate(userId, { $inc: { wallet: amount } }, { new: true });
+};

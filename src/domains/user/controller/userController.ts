@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { CreateUserDTO } from "../dtos/createUserDTO";
-import {createUserService} from "../services/userService"
+import {addToWalletService, createUserService} from "../services/userService"
 import { LoginUserDTO } from "../dtos/loginUserDTO";
 import { loginUser } from "../services/userService";
 
@@ -44,5 +44,15 @@ export const newUser = async (req: Request, res: Response) => {
             statusCode = 400;
         }
         res.status(statusCode).json({ error: error.message });
+    }
+};
+
+export const addToWallet = async (req: Request, res: Response) => {
+    try {
+        const { userId, amount } = req.body;
+        const updatedUser = await addToWalletService(userId, amount);
+        res.json(updatedUser);
+    } catch (error: any) {
+        res.status(500).json({ message: error.message });
     }
 };

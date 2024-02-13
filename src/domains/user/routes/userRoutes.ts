@@ -3,10 +3,12 @@ import { authenticateToken } from '../../../middlewares/tokenHandler'
 import isAdminMiddleware from '../../../middlewares/isAdmin'
 import { storageMiddleware } from '../../../middlewares/uploadImage'
 import { Request, Response } from 'express'
-import { loginUserController } from '../controller/userController'
+import { loginUserController, addToWallet } from '../controller/userController'
 
 
 
 export const userRoutes = Router()
 
 userRoutes.post('/login', loginUserController)
+userRoutes.post('/addjewel', authenticateToken, isAdminMiddleware, addToWallet);
+

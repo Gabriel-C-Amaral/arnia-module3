@@ -1,7 +1,7 @@
 import { CreateUserDTO } from "../dtos/createUserDTO";
 import { createUser} from "../repository/userRepository"
 import { LoginUserDTO } from "../dtos/loginUserDTO";
-import { findUserByEmail } from "../repository/userRepository";
+import { findUserByEmail, addToWalletRepository } from "../repository/userRepository";
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import { UserModel } from "../models/user";
@@ -39,4 +39,8 @@ export const loginUser = async (userData: LoginUserDTO) => {
         userId: user._id,
         isAdmin: user.isAdministrator
     };
+};
+
+export const addToWalletService = async (userId: string, amount: number) => {
+    return await addToWalletRepository(userId, amount);
 };
