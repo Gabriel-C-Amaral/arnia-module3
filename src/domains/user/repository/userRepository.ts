@@ -20,3 +20,20 @@ export const findUserByEmail = async (email: string) => {
 export const addToWalletRepository = async (userId: string, amount: number) => {
     return await UserModel.findByIdAndUpdate(userId, { $inc: { wallet: amount } }, { new: true });
 };
+
+export const updateUserRepository = async (userId: string, updateData: any) => {
+    return await UserModel.findByIdAndUpdate(userId, updateData, { new: true });
+};
+
+export const findUserById = async (id: string) => {
+    try {
+        const user = await UserModel.findById(id);
+        if (!user) {
+            throw new Error("User not found");
+        }
+        return user;
+    } catch (error) {
+        // Handle potential errors, such as invalid ID format
+        throw new Error(error as any);
+    }
+};

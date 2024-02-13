@@ -1,7 +1,8 @@
 import { CreateUserDTO } from "../dtos/createUserDTO";
 import { createUser} from "../repository/userRepository"
 import { LoginUserDTO } from "../dtos/loginUserDTO";
-import { findUserByEmail, addToWalletRepository } from "../repository/userRepository";
+import { findUserByEmail, addToWalletRepository, findUserById, updateUserRepository } from "../repository/userRepository";
+import { getProductById } from "../../products/repository/productRepository";
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import { UserModel } from "../models/user";
@@ -44,3 +45,17 @@ export const loginUser = async (userData: LoginUserDTO) => {
 export const addToWalletService = async (userId: string, amount: number) => {
     return await addToWalletRepository(userId, amount);
 };
+
+export const purchaseProductService = async (userId: string, productId: string) => {
+    const user = await findUserById(userId);
+    const product = await getProductById(productId);
+
+    if (user.wallet >= product!.price) {
+        user.wallet -= product!.price; // Deduct the product price from the user's wallet
+        await updateUserRepository(user.id, { wallet: user.wallet });
+        return { message: "Product purchased successfully" };
+    } else {
+        throw new Error("Insufficient wallet balance");
+    }
+};
+

@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { CreateUserDTO } from "../dtos/createUserDTO";
-import {addToWalletService, createUserService} from "../services/userService"
+import {addToWalletService, createUserService, purchaseProductService} from "../services/userService"
 import { LoginUserDTO } from "../dtos/loginUserDTO";
 import { loginUser } from "../services/userService";
 
@@ -56,3 +56,14 @@ export const addToWallet = async (req: Request, res: Response) => {
         res.status(500).json({ message: error.message });
     }
 };
+
+export const purchaseProduct = async (req: Request, res: Response) => {
+    try {
+        const { userId, productId } = req.body;
+        const purchaseResult = await purchaseProductService(userId, productId);
+        res.json(purchaseResult);
+    } catch (error: any) {
+        res.status(500).json({ message: error.message });
+    }
+};
+
