@@ -13,7 +13,7 @@ OBRIGATORIOS
  
  --negocio
  Enviar joia para usuário (rota Privada - Admin) ---
- Resgatar produto (rota Privada) 
+ Resgatar produto (rota Privada) ---
 
 
 
