@@ -22,13 +22,14 @@ export const createUserService = async (User: CreateUserDTO) => {
 
 export const loginUser = async (userData: LoginUserDTO) => {
     const user = await findUserByEmail(userData.email);
+    console.log(user)
     if (!user) {
         throw new Error("User not found");
     }
 
     const isMatch = await bcrypt.compare(userData.password, user.password);
     if (!isMatch) {
-        throw new Error("Invalid credentials Service");
+        throw new Error("Invalid credentials");
     }
 
     const payload = { userId: user._id, isAdmin: user.isAdministrator };
