@@ -9,6 +9,8 @@ import { UserModel } from "../models/user";
 
 
 export const createUserService = async (User: CreateUserDTO) => {
+    User.password = await bcrypt.hash(User.password, 10)
+
 
     const newUser = await createUser(User)
     if (!newUser) {

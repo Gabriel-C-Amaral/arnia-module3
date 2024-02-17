@@ -10,7 +10,6 @@ import bcrypt from 'bcrypt'
 
 export const createUser = async (newUser: CreateUserDTO) => {
     const User = await UserModel.create(newUser)
-    User.password = await bcrypt.hash(User.password, 10)
     return User
     
 }
