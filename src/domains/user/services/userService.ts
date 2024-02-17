@@ -59,3 +59,6 @@ export const purchaseProductService = async (userId: string, productId: string) 
     }
 };
 
+export const getUserDetailsByIdService = async (userId: string) => {
+    return await findUserById(userId); // Assumes this function returns user details including name and email
+};

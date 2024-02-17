@@ -2,7 +2,7 @@
 // const productService = require('../services/productService')
 import { Request, Response } from "express";
 import { CreateProductDTO } from "../dtos/createProductDTO";
-import { createProductService, getAllProductsService, getProductByIdService} from "../services/productService"
+import { createProductService, getAllProductsService, getProductByIdService, updateProductService} from "../services/productService"
 
 
 const newProduct = async (req: Request, res: Response) => {
@@ -51,4 +51,16 @@ const getProductById = async (req: Request, res: Response) => {
     }
 };
 
-module.exports = { newProduct, getAllProducts, getProductById };
+
+const updateProduct = async (req: Request, res: Response) => {
+    try {
+        const productId = req.params.id;
+        const updateData = req.body; // Assuming the request body contains the update data
+        const updatedProduct = await updateProductService(productId, updateData);
+        res.json(updatedProduct);
+    } catch (error: any) {
+        res.status(500).json({ message: error.message });
+    }
+};
+
+module.exports = { newProduct, getAllProducts, getProductById, updateProduct };

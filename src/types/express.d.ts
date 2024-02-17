@@ -6,3 +6,15 @@ declare module 'express-serve-static-core' {
     file?: Express.Multer.File;
   }
 }
+
+
+declare global {
+  namespace Express {
+    interface Request {
+      user?: { 
+        userId: string;
+        isAdmin?: boolean;
+      }
+    }
+  }
+}

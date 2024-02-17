@@ -13,4 +13,6 @@ export const productRoutes = Router()
 productRoutes.post('/newproduct', authenticateToken, isAdminMiddleware, storageMiddleware.single("image"),  productController.newProduct)
 productRoutes.get('/listproducts',authenticateToken, productController.getAllProducts)
 productRoutes.get('/product/:id', authenticateToken, productController.getProductById)
+productRoutes.patch('/product/:id', authenticateToken, isAdminMiddleware, productController.updateProduct);
+
 

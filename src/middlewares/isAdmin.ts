@@ -1,13 +1,13 @@
 import { Request, Response, NextFunction } from 'express';
 
-interface RequestWithUser extends Request {
-    user?: {
-        userId: string;
-        isAdmin: boolean;
-    };
-}
+// interface RequestWithUser extends Request {
+//     user?: {
+//         userId: string;
+//         isAdmin: boolean;
+//     };
+// }
 
-const isAdminMiddleware = (req: RequestWithUser, res: Response, next: NextFunction) => {
+const isAdminMiddleware = (req: Request, res: Response, next: NextFunction) => {
     
     if (req.user && req.user.isAdmin) {
         next();

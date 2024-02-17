@@ -6,11 +6,11 @@ interface UserPayload {
     isAdministrator: boolean;
 }
 
-interface RequestWithUser extends Request {
-    user?: UserPayload;
-}
+// interface RequestWithUser extends Request {
+//     user?: UserPayload;
+// }
 
-export const authenticateToken = (req: RequestWithUser, res: Response, next: NextFunction) => {
+export const authenticateToken = (req: Request, res: Response, next: NextFunction) => {
     const authHeader = req.headers['authorization'];
     const token = authHeader && authHeader.split(' ')[1]; // Bearer TOKEN
 

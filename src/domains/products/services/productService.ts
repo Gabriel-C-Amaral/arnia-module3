@@ -1,6 +1,8 @@
 // import productRepository from '../repository/productRepository'
 const productRepository = require('../repository/productRepository')
 import { CreateProductDTO } from "../dtos/createProductDTO"
+import { updateProductByID } from '../repository/productRepository';
+
 
 
 
@@ -23,5 +25,8 @@ export const getProductByIdService = async (id: string) => {
    return await productRepository.getProductById(id);
 };
 
+export const updateProductService = async (productId: string, updateData: any) => {
+   return await updateProductByID(productId, updateData);
+}
 
 // module.exports = {createProduct, getAllProducts}

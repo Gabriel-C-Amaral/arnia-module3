@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { CreateUserDTO } from "../dtos/createUserDTO";
-import {addToWalletService, createUserService, purchaseProductService} from "../services/userService"
+import {addToWalletService, createUserService, getUserDetailsByIdService, purchaseProductService} from "../services/userService"
 import { LoginUserDTO } from "../dtos/loginUserDTO";
 import { loginUser } from "../services/userService";
 
@@ -67,3 +67,8 @@ export const purchaseProduct = async (req: Request, res: Response) => {
     }
 };
 
+export const getUserDetailsByIdController = async (req: Request, res: Response) => {
+    const userId = req.user?.userId;
+    const userDetails = await getUserDetailsByIdService(userId!); 
+    res.json({ name: userDetails.name, email: userDetails.email });
+}
