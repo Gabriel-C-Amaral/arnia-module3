@@ -13,5 +13,5 @@ userRoutes.post('/login', loginUserController)
 userRoutes.post('/addjewel', authenticateToken, isAdminMiddleware, addToWallet);
 userRoutes.post('/redeemproduct', authenticateToken, purchaseProduct);
 userRoutes.get('/loggedUser', authenticateToken, getUserDetailsByIdController)
-userRoutes.post('/createUser', newUser)
+userRoutes.post('/createUser', storageMiddleware.single("image"), newUser)
 
