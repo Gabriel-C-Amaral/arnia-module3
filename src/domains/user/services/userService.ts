@@ -28,7 +28,7 @@ export const loginUser = async (userData: LoginUserDTO) => {
 
     const isMatch = await bcrypt.compare(userData.password, user.password);
     if (!isMatch) {
-        throw new Error("Invalid credentials");
+        throw new Error("Invalid credentials Service");
     }
 
     const payload = { userId: user._id, isAdmin: user.isAdministrator };
